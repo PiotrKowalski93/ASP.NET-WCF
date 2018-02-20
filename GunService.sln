@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedServiceInterface", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{C26A7CC2-EF1F-49AE-8A50-9CE4E15AB919}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GunPermAnalysis", "GunPermAnalysis\GunPermAnalysis.csproj", "{6AB72250-B15C-40A1-B5AF-F916ECD8B32D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GunPermAnalysis.Tests", "GunPermAnalysis.Tests\GunPermAnalysis.Tests.csproj", "{DDC3EA3E-1B8B-41CA-B098-9FA224559083}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{C26A7CC2-EF1F-49AE-8A50-9CE4E15AB919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C26A7CC2-EF1F-49AE-8A50-9CE4E15AB919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C26A7CC2-EF1F-49AE-8A50-9CE4E15AB919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AB72250-B15C-40A1-B5AF-F916ECD8B32D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AB72250-B15C-40A1-B5AF-F916ECD8B32D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AB72250-B15C-40A1-B5AF-F916ECD8B32D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AB72250-B15C-40A1-B5AF-F916ECD8B32D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC3EA3E-1B8B-41CA-B098-9FA224559083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC3EA3E-1B8B-41CA-B098-9FA224559083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC3EA3E-1B8B-41CA-B098-9FA224559083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC3EA3E-1B8B-41CA-B098-9FA224559083}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
