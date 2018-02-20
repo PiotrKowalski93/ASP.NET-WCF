@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "DomainModel" namespace = "DomainModel">
+
+  <class name = "Persons">
+    <id name = "Id">
+      <generator class = "native"/>
+    </id>
+    <property name = "FirstName"/>
+    <property name = "Surname"/>
+    <property name = "JobId"/>
+    <property name = "Gender"/>
+    <property name = "City"/>
+    <property name = "AgeGroupId"/> 
+  </class>
+
+</hibernate-mapping>
