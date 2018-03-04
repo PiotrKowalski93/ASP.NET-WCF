@@ -168,13 +168,55 @@ exec ChangeGunName 'Ruger Number One', 'Ruger Number Two'
 -- Funkcje
 ----------------------------------------------
 
+-- Function will count number of gunst with given caliber size
+IF object_id(N'CountGunsWithGivenCaliber', N'FN') IS NOT NULL
+    DROP FUNCTION CountGunsWithGivenCaliber
+GO
 
+create function CountGunsWithGivenCaliber(@caliber nvarchar(10))
+returns int
+as
+begin
+declare @number int
+set @number = (select COUNT(Guns.Id) from Guns 
+				inner join Calibers on Guns.CaliberId = Calibers.Id
+				where CaliberSize = @caliber
+				group by Calibers.CaliberSize)
+return @number
+end
+
+declare @ret int
+set @ret = dbo.CountGunsWithGivenCaliber('.20')
+print 'Number of guns for type .20: ' + cast(@ret as varchar)
+
+-- Returns number of people having given njob name
+
+if OBJECT_ID(N'CountPeopleWithGivenJob', N'FN') is not null
+	drop function CountPeopleWithGivenJob
+go
+
+create function CountPeopleWithGivenJob(@jobName nvarchar(50))
+returns int
+as
+begin
+declare @people int
+set @people = (select COUNT(Persons.Id) from Persons
+				inner join Jobs on Persons.JobId = Jobs.Id
+				where JobName = @jobName
+				group by Jobs.JobName)
+return @people
+end
+
+declare @number int
+set @number = dbo.CountPeopleWithGivenJob('Airline Pilot')
+
+print 'Number of people with job Airline Pilot: ' + cast(@number as varchar)
 
 
 ----------------------------------------------
 -- Triggery
 ----------------------------------------------
-
+-- Pring error message when serial number already exists
 create trigger GunUniqueNumberExists
 on Guns
 for insert
