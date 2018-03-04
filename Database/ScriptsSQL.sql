@@ -97,7 +97,6 @@ go
 ----------------------------------------------
 
 -- Procedure will return GunPermissions Ids Accepted in given year
-
 if exists (select 1 from sys.objects where type='P' and name='ShowApprovedPermissions')
 drop procedure ShowApprovedPermissions
 go
@@ -114,7 +113,6 @@ end
 exec ShowApprovedPermissions 2016
 
 -- Procedure will show Persons data from refiused permission applications
-
 if exists(select 1 from sys.objects where type='P' and name='ShowRefiusedPeople')
 drop procedure ShowRefiusedPeople
 go
@@ -134,7 +132,6 @@ exec ShowRefiusedPeople 2016
 
 
 -- Procedure will show Persons data from refiused permission applications with reason
-
 if exists(select 1 from sys.objects where type='P' and name='ShowRefiusedPeopleWithReason')
 drop procedure ShowRefiusedPeopleWithReason
 go
@@ -152,3 +149,46 @@ and Time.Year = @year
 end
 
 exec ShowRefiusedPeopleWithReason 2016
+
+-- Procedure to change old gun name to new gun name
+if exists (select 1 from sys.objects where type='P' and name='ChangeGunName')
+drop procedure ChangeGunName
+go
+
+create procedure ChangeGunName @gunName nvarchar(100), @newGunName nvarchar(100)
+as
+begin
+update Guns
+set GunName = @newGunName
+where GunName = @gunName
+end
+
+exec ChangeGunName 'Ruger Number One', 'Ruger Number Two'
+----------------------------------------------
+-- Funkcje
+----------------------------------------------
+
+
+
+
+----------------------------------------------
+-- Triggery
+----------------------------------------------
+
+create trigger GunUniqueNumberExists
+on Guns
+for insert
+as
+declare @serialNumber varchar(MAX)
+set @serialNumber = (select SerialNumber from inserted)
+begin
+if exists (select Id from Guns where SerialNumber = @serialNumber)
+	begin 
+		print 'Serial Number Exists'
+		rollback
+	end
+
+end
+
+insert into Guns values ('TestGunName', 1, 1, '23676B8D-EA73-BCD8-8B13-42273F7394E4');
+go
